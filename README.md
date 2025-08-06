@@ -1,7 +1,7 @@
 
 This tutorial is based on the [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) from University of Manchester
 # About the SpiNN-3 SpiNNaker Board
-![](IMG_20250804_131129.png)
+![](images/spinnaker.png)
 
 - **S0: root chip** which is directly connected to the Ethernet controller. It is the entry point for communication between your host computer and the SpiNNaker machine. Runs SCAMP (SpiNNaker Control and Monitor Program, manages loading binaries, gathering data etc.)
 - **S1-S3: secondary chips**. These computational chips do not have direct Ethernet access and cannot boot on their own. They are connected to S0 and to each other; once S0 boots successfully, it will boot S1–S3 via the SpiNNaker mesh network.
@@ -82,7 +82,7 @@ arp -a
 
 After power on or reset a SpiNNaker board, you might observe the board trying to communicate via its SCAMP boot protocol. If you capture the Ethernet traffic (for example using WireShark), you will likely see UDP packets broadcasted from board's IP. That is how the SpiNNaker is trying to communicate with a computer.
 Below you can see an example of Ethernet traffic captured with WireShark. We can understand what the boards IP address is by analyzing the highlited UDP packets.
-![](wireshark.jpg)
+![](images/wireshark.jpg)
 
 If the board's IP address is not the default one, configure your computer's Ethernet interface with a static IP in the same subnet. In this case it means matching the first three numbers (e.g., 192.168.240.x) and choosing an unused final digit.
 
