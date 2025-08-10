@@ -24,10 +24,10 @@ This tutorial is based on the [PyNN on SpiNNaker installation guide](https://spi
 - **power: Power input connector**
 
 # Installation
-Note: I am working with Windows 11, but as [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) states, 
+Note: As [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) states, 
 > Full testing is done using Ubuntu 22.04 and Python 3.12 so these are our recommendations.
 
-Let's start with setting up the virtual environment with Python version >= 3.9.
+Let's start with setting up the virtual environment.
 ```bash
 cd your/project
 ```
