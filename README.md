@@ -15,9 +15,9 @@ This tutorial is based on the [PyNN on SpiNNaker installation guide](https://spi
      - Off: Link is inactive or not connected 
      - Blinking: Data transmission activity on that link 
 
-- **1** TODO partial reset???
+- **1** partial reset?
 - **2: PRG button** used to put the board into programming mode. When pressed, it enables the board to enter a state that allows new firmware or software to be uploaded.
-- **3** TODO full reset?
+- **3** full reset?
 - **4: Ethernet Status LEDs**. Indicates whether the cable is connected and the board detects the network.
 - **5: PWR LED.** Indicates whether the board is receiving power.
 - **eth: Ethernet connector**
@@ -74,7 +74,7 @@ Please follow the configuration part of the [PyNN on SpiNNaker installation guid
 ping [your board's IP]
 ```
 
-Make sure you actually know your board's IP address! The default IP address for a spinn-3 board is **192.168.240.253** and for a spinn-5 board is **192.168.240.1**, however, this is not guaranteed, as the board may have been reconfigured. If the default address configuration throws errors and
+Make sure you actually know your board's IP address! The default IP address for a spinn-3 board is **192.168.240.253** and for a spinn-5 board is **192.168.240.1**, however, this is not guaranteed, as the board may have been reconfigured. **!!The board in our lab is on the 130.88.198.98**!!. If the default address configuration throws errors and
 board is not reachable by ping, after connecting the board to your computer via Ethernet, check your ARP table to see if the board's MAC and IP address appear to confirm whether the board is using the IP address you expect. 
 ```bash
 arp -a
