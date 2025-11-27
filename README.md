@@ -73,6 +73,7 @@ Please follow the configuration part of the [PyNN on SpiNNaker installation guid
 ```bash
 ping [your board's IP]
 ```
+### Troubleshooting 
 
 Make sure you actually know your board's IP address! The default IP address for a spinn-3 board is **192.168.240.253** and for a spinn-5 board is **192.168.240.1**, however, this is not guaranteed, as the board may have been reconfigured. **!!The board in our lab is on the 130.88.198.98**!!. If the default address configuration throws errors and
 board is not reachable by ping, after connecting the board to your computer via Ethernet, check your ARP table to see if the board's MAC and IP address appear to confirm whether the board is using the IP address you expect. 
