@@ -79,12 +79,12 @@ board is not reachable by ping, after connecting the board to your computer via 
 ```bash
 arp -a
 ```
+If the board's IP address is not the default one, configure your computer's Ethernet interface with a static IP in the same subnet. In this case it means matching the first three numbers and choosing an unused final digit - in this case **130.88.198.99**.
 
 After power on or reset a SpiNNaker board, you might observe the board trying to communicate via its SCAMP boot protocol. If you capture the Ethernet traffic (for example using WireShark), you will likely see UDP packets broadcasted from board's IP. That is how the SpiNNaker is trying to communicate with a computer.
 Below you can see an example of Ethernet traffic captured with WireShark. We can understand what the boards IP address is by analyzing the highlited UDP packets.
 ![](images/wireshark.jpg)
 
-If the board's IP address is not the default one, configure your computer's Ethernet interface with a static IP in the same subnet. In this case it means matching the first three numbers (e.g., 192.168.240.x) and choosing an unused final digit.
 
 
 ## Overview of the installed packages
