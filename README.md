@@ -23,6 +23,9 @@ This tutorial is based on the [PyNN on SpiNNaker installation guide](https://spi
 - **eth: Ethernet connector**
 - **power: Power input connector**
 
+# SpiNN 5 Quick Start Guide
+Additionally, there is an [Official Quick Start Guide](https://spinnakermanchester.github.io/docs/spinn-app-9.pdf) for the SpiNN 5 that quickly introduces the board and the setup process.
+
 # Installation
 Note: As [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) states, 
 > Full testing is done using Ubuntu 22.04 and Python 3.12 so these are our recommendations.
