@@ -13,7 +13,7 @@ SpiNNaker machine of University of Manchester can be accessed through the [EBRAI
 
 # Local SpiNN Boards
 
-Within the Neuro-Inspired Perception and Cognition research group, two SpiNNaker platforms are available for use: the SpiNN-3 and SpiNN-5 boards, representing different scales of neuromorphic architecture and enabling a range of neuromorphic computing experiments. The **SpiNN-3 board** is a compact, low-power platform composed of four interconnected SpiNNaker chips, making it suitable for small-scale neural simulations. In contrast, the **SpiNN-5** board provides a significantly larger computational resource, consisting of 48 chips and incorporating FPGA-based communication interfaces, which allow for higher scalability and integration of deeper neural networks.
+Within the Neuro-Inspired Perception and Cognition research group, two SpiNNaker platforms are available for use: the SpiNN-3 and SpiNN-5 boards, representing different scales of neuromorphic architecture and enabling a range of neuromorphic computing experiments. The **SpiNN-3 board** is a compact, low-power platform composed of four interconnected SpiNNaker chips, which makes it suitable for small-scale neural simulations. In contrast, the **SpiNN-5** board provides a significantly larger computational resource, consisting of 48 chips and incorporating FPGA-based communication interfaces, which allow higher scalability and integration of deeper neural networks.
 
 ## SpiNN-3
 
