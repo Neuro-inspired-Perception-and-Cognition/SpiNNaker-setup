@@ -17,7 +17,7 @@ Within the Neuro-Inspired Perception and Cognition research group, two SpiNNaker
 
 ## SpiNN-3
 
-![](images/spinn-3-npc.png)
+![](images/spinn-3-npc.jpg)
 *Fig.2) The SpiNN-3 neuromorphic computing board used within Neuro-Inspired Perception and Cognition research group. This prototype dated February 2011 houses four SpiNNaker processor chips.*
 
 ### Board structure:
