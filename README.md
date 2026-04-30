@@ -10,8 +10,9 @@ At a larger scale, multiple SpiNN boards can be interconnected to form a **SpiNN
 
 SpiNNaker machine of University of Manchester can be accessed through the [EBRAINS Collaboratory](https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/SpiNNaker/), where computational resources are exposed via Jupyter Notebook environments accessible directly in a web browser through the “Lab” interface.
 
-![](images/spinnaker-machine-manchester.jpeg)
-*https://electronicvisions.github.io/hbp-sp9-guidebook/mc/mc_index.html*
+![](images/spinnaker-machine-manchester.jpg)
+*
+The SpiNNaker machine, world's largest neuromorphic computing platform, developed and hosted at The University of Manchester. Conceived by the Advanced Processor Technologies Research Group, this supercomputer incorporates over one million ARM processor cores to simulate biological brain circuits in real time. Source: [HBP Neuromorphic Computing Platform Guidebook](https://electronicvisions.github.io/hbp-sp9-guidebook/mc/mc_index.html)*
 
 # Local SpiNN Boards
 
