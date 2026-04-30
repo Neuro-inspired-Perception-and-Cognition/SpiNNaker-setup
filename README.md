@@ -1,5 +1,5 @@
 # About the SpiNNaker Boards
-SpiNNaker (or SpiNN) is a large-scale neuromorphic computing platform developed at the University of Manchester for real-time simulation of spiking neural networks (SNNs). The architecture is designed to emulate biological neural systems using parallel, low-power processing cores.
+SpiNNaker (or SpiNN) is a neuromorphic computing platform developed at the University of Manchester for real-time simulation of spiking neural networks (SNNs). The architecture is designed to emulate biological neural systems using parallel, low-power processing cores.
 
 SpiNNaker platform is built from many identical **SpiNNaker chips**, each integrating 18 ARM cores and a dedicated communication infrastructure. These chips are assembled into boards, with SpiNN-3 and SpiNN-5 representing two key hardware configurations differing primarily in scale and intended use cases. A single SpiNNaker chip can perform up to 3.6 billion simple operations per second *consuming only 1 Watt of electrical power* [[1]](https://pure.manchester.ac.uk/ws/files/51830495/High_Performance_Computing_on_SpiNNaker_Neuromorphic_Platform_a_Case_Study_for_Energy_Efficient_Image_Processin.pdf?utm_source=chatgpt.com), enabling the deployment of complex neural simulations in power-constrained environments such as embedded and robotic systems.
 
