@@ -17,8 +17,10 @@ Within the Neuro-Inspired Perception and Cognition research group, two SpiNNaker
 
 ## SpiNN-3
 
-<img src="images/spinn-3-npc.jpg" width="400">
-*Fig.2) The SpiNN-3 neuromorphic computing board used within Neuro-Inspired Perception and Cognition research group. This prototype dated February 2011 houses four SpiNNaker processor chips.*
+<div align="center">
+  <img src="images/spinn-3-npc.jpg" width="400">
+  *Fig.2) The SpiNN-3 neuromorphic computing board used within Neuro-Inspired Perception and Cognition research group. This prototype dated February 2011 houses four SpiNNaker processor chips.*
+</div>
 
 ### Board structure:
 - **S0: root chip** which is directly connected to the Ethernet controller. It is the entry point for communication between the host computer and the SpiNN board, runs SCAMP (SpiNNaker Control and Monitor Program), manages loading binaries, gathering data etc.
