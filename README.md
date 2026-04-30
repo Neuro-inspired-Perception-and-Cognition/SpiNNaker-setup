@@ -11,6 +11,7 @@ At a larger scale, multiple SpiNN boards can be interconnected to form a **SpiNN
 SpiNNaker machine of University of Manchester can be accessed through the [EBRAINS Collaboratory](https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/SpiNNaker/), where computational resources are exposed via Jupyter Notebook environments accessible directly in a web browser through the “Lab” interface.
 
 ![](images/spinnaker-machine-manchester.jpeg)
+*https://electronicvisions.github.io/hbp-sp9-guidebook/mc/mc_index.html*
 
 # Local SpiNN Boards
 
@@ -47,8 +48,8 @@ There is an [Official brief introduction to the SpiNN-3 Board](https://spinnaker
 
 There is an [Official Quick Start Guide for the SpiNN-5 Platform](https://spinnakermanchester.github.io/docs/spinn-app-9.pdf) that quickly introduces the board and contain useful Power-Up and Troubleshooting guide.
 
-# Setup
-If you are using the board for the first time, please follow [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard).
+## Installation
+The setup procedure is based on the guidelines provided in the [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard).
  
 
 Start with setting up the virtual environment. **Python 3.12** is recommended
@@ -65,6 +66,9 @@ You should now see the environment name in your terminal prompt, like:
 
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install required packages.
+
+**PyNN** is a Python interface for defining spiking neural network models in a standardized way. It provides a common API that allows the same neural model to be executed on different backends without modifying the model definition. **sPyNNaker is the SpiNNaker implementation of PyNN**. It enables the execution of PyNN-defined spiking neural network models directly on SpiNNaker hardware by translating high-level network descriptions into executable code for the SpiNNaker architecture.
+
 
 ```bash
 # if you had them installed before
@@ -133,6 +137,8 @@ A successful response confirms that the system is correctly configured and ready
 
 ## Troubleshooting 
 
+- Before executing custom simulations, it is recommended to first run a set of example scripts, such as those available in the [SpiNNaker PyNNExamples repository](https://github.com/SpiNNakerManchester/PyNNExamples
+). If errors occur, it is important to analyze the output messages and logs before proceeding, as identifying the stage at which the error arises (e.g., configuration, loading, execution, or communication) is essential for effective debugging and resolution.
 - Ensure that the plastic retaining clips on the Ethernet connectors are intact on both ends, as a damaged clip may result in an unstable connection even if the cable appears to be properly inserted;
 
 #### SpiNN-3
@@ -157,6 +163,19 @@ SpiNNMan==1!7.3.0
 SpiNNUtilities==1!7.3.0
 sPyNNaker==1!7.3.0
 ```
+
+## Useful links
+[PyNN documentation](https://neuralensemble.org/docs/PyNN/)  
+[sPyNNaker documentation](https://spynnaker.readthedocs.io/en/latest/)  
+[sPyNNaker source code](https://github.com/SpiNNakerManchester/sPyNNaker)  
+
+[SpiNNaker technical documents](https://spinnakermanchester.github.io/docs/)  
+[SpiNNaker online software documentation](https://spinnakermanchester.github.io/)  
+[SpiNNaker support - Google group](https://groups.google.com/u/0/g/spinnakerusers)
+
+[HBP Neuromorphic Computing Platform Guidebook](https://electronicvisions.github.io/hbp-sp9-guidebook/)
+
+
 ## References
 
 [1] SUGIARTO, I.; LIU, G.; DAVIDSON, S.; PLANA, L. A.; FURBER, S. B. High performance computing on SpiNNaker neuromorphic platform: A case study for energy efficient image processing. In: *2016 IEEE 35th International Performance Computing and Communications Conference (IPCCC)*. 2016, pp. 1–8. Available from doi: [10.1109/PCCC.2016.7820645](https://doi.org/10.1109/PCCC.2016.7820645).  
