@@ -1,18 +1,15 @@
-
-This tutorial is based on the [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) from University of Manchester
 # About the SpiNNaker Boards
 SpiNNaker (or SpiNN) is a large-scale neuromorphic computing platform developed at the University of Manchester for real-time simulation of spiking neural networks (SNNs). The architecture is designed to emulate biological neural systems using parallel, low-power processing cores.
 
-Each SpiNNaker system is built from many identical **SpiNNaker chips**, each integrating multiple ARM cores and a dedicated communication infrastructure. These chips are assembled into boards, with SpiNN-3 and SpiNN-5 representing two key hardware configurations differing primarily in scale and intended use cases. A single SpiNNaker chip can perform up to 3.6 billion simple operations per second *consuming only 1 Watt of electrical power* [[1]](https://pure.manchester.ac.uk/ws/files/51830495/High_Performance_Computing_on_SpiNNaker_Neuromorphic_Platform_a_Case_Study_for_Energy_Efficient_Image_Processin.pdf?utm_source=chatgpt.com), enabling the deployment of complex neural simulations in power-constrained environments such as embedded and robotic systems.
+SpiNNaker platform is built from many identical **SpiNNaker chips**, each integrating 18 ARM cores and a dedicated communication infrastructure. These chips are assembled into boards, with SpiNN-3 and SpiNN-5 representing two key hardware configurations differing primarily in scale and intended use cases. A single SpiNNaker chip can perform up to 3.6 billion simple operations per second *consuming only 1 Watt of electrical power* [[1]](https://pure.manchester.ac.uk/ws/files/51830495/High_Performance_Computing_on_SpiNNaker_Neuromorphic_Platform_a_Case_Study_for_Energy_Efficient_Image_Processin.pdf?utm_source=chatgpt.com), enabling the deployment of complex neural simulations in power-constrained environments such as embedded and robotic systems.
 
-At a larger scale, multiple SpiNN boards can be interconnected to form a **SpiNNaker machine**, supporting simulations of significantly greater complexity. The most prominent example is the world’s largest neuromorphic computing SpiNNaker system developed at the University of Manchester (Fig.1), which consists of 1,036,800 cores interconnected through a high-speed communication network, reaching over 7 TB of RAM. This system is constructed by assembling numerous SpiNN-5 boards into racks, creating a highly scalable computing platform. In terms of simulation capacity, it was designed to model up to approximately one billion (10⁹) neurons and one trillion (10¹²) synapses in real time [[2]](https://doi.org/10.3389/fnins.2018.00816), placing it above the neuronal scale of small mammalian brains such as that of the mouse (≈10⁸ neurons), while still representing only about 1% of the human brain (≈8.6 × 10¹⁰ neurons).
+At a larger scale, multiple SpiNN boards can be interconnected to form a **SpiNNaker machine**, supporting simulations of significantly greater complexity. The most prominent example is the world’s largest neuromorphic computing SpiNNaker system developed at the University of Manchester (Fig.1), which consists of 1,036,800 cores interconnected through a high-speed communication network [2], reaching over 7 TB of RAM. This system is constructed by assembling numerous SpiNN-5 boards into racks, creating a highly scalable computing platform. In terms of simulation capacity, it was designed to model up to approximately one billion (10⁹) neurons and one trillion (10¹²) synapses in real time [[3]](https://doi.org/10.3389/fnins.2018.00816), placing it above the neuronal scale of small mammalian brains such as that of the mouse (≈10⁸ neurons), while still representing only about 1% of the human brain (≈8.6 × 10¹⁰ neurons).
 
 
 SpiNNaker machine of University of Manchester can be accessed through the [EBRAINS Collaboratory](https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/SpiNNaker/), where computational resources are exposed via Jupyter Notebook environments accessible directly in a web browser through the “Lab” interface.
 
 ![](images/spinnaker-machine-manchester.jpg)
-*
-The SpiNNaker machine, world's largest neuromorphic computing platform, developed and hosted at The University of Manchester. Conceived by the Advanced Processor Technologies Research Group, this supercomputer incorporates over one million ARM processor cores to simulate biological brain circuits in real time. Source: [HBP Neuromorphic Computing Platform Guidebook](https://electronicvisions.github.io/hbp-sp9-guidebook/mc/mc_index.html)*
+*Fig.1) The SpiNNaker machine, world's largest neuromorphic computing platform, developed and hosted at The University of Manchester. Conceived by the Advanced Processor Technologies Research Group, this supercomputer incorporates over one million ARM processor cores to simulate biological brain circuits in real time. Source: [HBP Neuromorphic Computing Platform Guidebook](https://electronicvisions.github.io/hbp-sp9-guidebook/mc/mc_index.html)*
 
 # Local SpiNN Boards
 
@@ -21,6 +18,7 @@ Within the Neuro-Inspired Perception and Cognition research group, two SpiNNaker
 ## SpiNN-3
 
 ![](images/spinn-3-npc.png)
+*Fig.2) The SpiNN-3 neuromorphic computing board used within Neuro-Inspired Perception and Cognition research group. This prototype dated February 2011 houses four SpiNNaker processor chips.*
 
 ### Board structure:
 - **S0: root chip** which is directly connected to the Ethernet controller. It is the entry point for communication between the host computer and the SpiNN board, runs SCAMP (SpiNNaker Control and Monitor Program), manages loading binaries, gathering data etc.
@@ -44,6 +42,8 @@ There is an [Official brief introduction to the SpiNN-3 Board](https://spinnaker
 ## SpiNN-5
 
 ![](images/SpiNN5_SpiNNaker48ChipsBoard.jpg)
+*Fig.3) SpiNN-5 board, the standard building block of a large-scale SpiNNaker neuromorphic system. Featuring 48 SpiNNaker chips interconnected in a mesh topology where each chip connects to six neighbors, it provides a total of 864 ARM cores across the board. Source: [Ebrains Collaboratory](https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/SpiNNaker/#Information)*
+
 ### Board structure:
 ...
 
@@ -140,17 +140,17 @@ A successful response confirms that the system is correctly configured and ready
 
 - Before executing custom simulations, it is recommended to first run a set of example scripts, such as those available in the [SpiNNaker PyNNExamples repository](https://github.com/SpiNNakerManchester/PyNNExamples
 ). If errors occur, it is important to analyze the output messages and logs before proceeding, as identifying the stage at which the error arises (e.g., configuration, loading, execution, or communication) is essential for effective debugging and resolution.
-- Ensure that the plastic retaining clips on the Ethernet connectors are intact on both ends, as a damaged clip may result in an unstable connection even if the cable appears to be properly inserted;
+- Ensure that the plastic retaining clips on the Ethernet connectors are intact on both ends, as a damaged clip may result in an unstable connection even if the cable appears to be properly inserted.
 
 #### SpiNN-3
-- Verify that each chip indicates normal operation by showing at least one blinking green LED. If any red LEDs are observed, this may indicate a fault or link error; in such cases, perform a hardware reset by pressing and holding the reset button for a few seconds, and allow the board to reboot fully before proceeding;
+- Verify that each chip indicates normal operation by showing at least one blinking green LED. If any red LEDs are observed, this may indicate a fault or link error; in such cases, perform a hardware reset by pressing and holding the reset button for a few seconds, and allow the board to reboot fully before proceeding.
 
 #### SpiNN-5
-- Ensure that no additional interconnect cables are attached to the board unless explicitly required. Unintended connections between communication links may introduce loops in the SpiNNaker network topology, leading to packet circulation, routing instability, or communication failures during operation;
+- Ensure that no additional interconnect cables are attached to the board unless explicitly required. Unintended connections between communication links may introduce loops in the SpiNNaker network topology, leading to packet circulation, routing instability, or communication failures during operation.
 
 
-## Further troubleshooting
-Versions of the common packages that works for lab's SpiNNaker boards with **Python 3.12** can be found below.
+***
+Versions of the common packages for **Python 3.12** that was used with SpiNNaker boards in group's research can be found below.
 
 ```bash
 matplotlib==3.10.3
@@ -181,4 +181,7 @@ sPyNNaker==1!7.3.0
 
 [1] SUGIARTO, I.; LIU, G.; DAVIDSON, S.; PLANA, L. A.; FURBER, S. B. High performance computing on SpiNNaker neuromorphic platform: A case study for energy efficient image processing. In: *2016 IEEE 35th International Performance Computing and Communications Conference (IPCCC)*. 2016, pp. 1–8. Available from doi: [10.1109/PCCC.2016.7820645](https://doi.org/10.1109/PCCC.2016.7820645).  
 
-[2] RHODES, O.; BOGDAN, P. A.; BRENNINKMEIJER, C.; DAVIDSON, S.; FELLOWS, D.; GAIT, A.; LESTER, D. R.; MIKAITIS, M.; PLANA, L. A.; ROWLEY, A. G. D.; STOKES, A. B.; FURBER, S. B. sPyNNaker: A Software Package for Running PyNN Simulations on SpiNNaker. *Frontiers in Neuroscience*. 2018, vol. 12, p. 816. Available from doi: [10.3389/fnins.2018.00816](https://doi.org/10.3389/fnins.2018.00816).
+[2] PLANA, L. A.; GARSIDE, J.; HEATHCOTE, J.; PEPPER, J.; TEMPLE, S.; DAVIDSON, S.; LUJÁN, M.; FURBER, S. B. SpiNNlink: FPGA-Based Interconnect for the Million-Core SpiNNaker System. *IEEE Access*. 2020, pp. 1–1. Available from doi: [10.1109/ACCESS.2020.2991038](https://doi.org/10.1109/ACCESS.2020.2991038). 
+
+[3] RHODES, O.; BOGDAN, P. A.; BRENNINKMEIJER, C.; DAVIDSON, S.; FELLOWS, D.; GAIT, A.; LESTER, D. R.; MIKAITIS, M.; PLANA, L. A.; ROWLEY, A. G. D.; STOKES, A. B.; FURBER, S. B. sPyNNaker: A Software Package for Running PyNN Simulations on SpiNNaker. *Frontiers in Neuroscience*. 2018, vol. 12, p. 816. Available from doi: [10.3389/fnins.2018.00816](https://doi.org/10.3389/fnins.2018.00816).
+
