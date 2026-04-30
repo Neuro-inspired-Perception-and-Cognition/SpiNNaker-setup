@@ -60,14 +60,14 @@ The setup procedure is based on the guidelines provided in the [PyNN on SpiNNake
 
 Start with setting up the virtual environment. **Python 3.12** is recommended
 ```bash
-cd your/project
+cd your\project
 python -m venv .venv
 .venv\Scripts\activate # Windows command prompt
 source .venv/bin/activate # Linux/macOS
 ```
 You should now see the environment name in your terminal prompt, like:
 ```bash
-(.venv) D:\your\project>
+(.venv) your\project>
 ```
 
 
