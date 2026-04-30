@@ -18,8 +18,9 @@ Within the Neuro-Inspired Perception and Cognition research group, two SpiNNaker
 ## SpiNN-3
 
 <p align="center">
-  <img src="images/spinn-3-npc.jpg" width="600"/>
+  <img src="images/spinn-3-npc.jpg" width="550"/>
 </p>
+
 *Fig.2) The SpiNN-3 neuromorphic computing board used within Neuro-Inspired Perception and Cognition research group. This prototype dated February 2011 houses four SpiNNaker processor chips.*
 
 ### Board structure:
@@ -43,7 +44,10 @@ To restart the board, press and hold the reset button for a few seconds, then wa
 There is an [Official brief introduction to the SpiNN-3 Board](https://spinnakermanchester.github.io/docs/spinn-app-1.pdf?) available, however the board layout can differ.
 ## SpiNN-5
 
-![](images/SpiNN5_SpiNNaker48ChipsBoard.jpg)
+<p align="center">
+  <img src="images/SpiNN5_SpiNNaker48ChipsBoard.jpg" width="550"/>
+</p>
+
 *Fig.3) SpiNN-5 board, the standard building block of a large-scale SpiNNaker neuromorphic system. Featuring 48 SpiNNaker chips interconnected in a mesh topology where each chip connects to six neighbors, it provides a total of 864 ARM cores across the board. Source: [Ebrains Collaboratory](https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/SpiNNaker/#Information)*
 
 ### Board structure:
