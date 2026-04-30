@@ -144,11 +144,11 @@ A successful response confirms that the system is correctly configured and ready
 ## Troubleshooting 
 
 - Before executing custom simulations, it is recommended to first run a set of example scripts, such as those available in the [SpiNNaker PyNNExamples repository](https://github.com/SpiNNakerManchester/PyNNExamples
-). If errors occur, it is important to analyze the output messages and logs before proceeding, as identifying the stage at which the error arises (e.g., configuration, loading, execution, or communication) is essential for effective debugging and resolution.
+). If errors occur, it is important to analyze the output messages and logs before proceeding, as identifying the stage at which the error arises (e.g., configuration, loading, execution, or communication) is essential for effective debugging and resolution;
 - Ensure that the plastic retaining clips on the Ethernet connectors are intact on both ends, as a damaged clip may result in an unstable connection even if the cable appears to be properly inserted.
 
 #### SpiNN-3
-- Verify that each chip indicates normal operation by showing at least one blinking green LED. If any red LEDs are observed, this may indicate a fault or link error; in such cases, perform a hardware reset by pressing and holding the reset button for a few seconds, and allow the board to reboot fully before proceeding.
+- Verify that each chip indicates normal operation by showing at least one blinking green LED. If any red LEDs are observed, this may indicate a fault or link error; in such cases, perform a hardware reset by pressing and holding the reset button for a few seconds, and allow the board to reboot fully before proceeding;
 - In the event that the SpiNNaker board experiences unusually high operating temperatures, the system should be safely shut down by disconnecting both the power and Ethernet connections. The board should then be left idle for a sufficient period to allow it to return to normal operating temperature before resuming operation.
 #### SpiNN-5
 - Ensure that no additional interconnect cables are attached to the board unless explicitly required. Unintended connections between communication links may introduce loops in the SpiNNaker network topology, leading to packet circulation, routing instability, or communication failures during operation;
