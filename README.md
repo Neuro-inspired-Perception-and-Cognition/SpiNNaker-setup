@@ -51,9 +51,8 @@ There is an [Official brief introduction to the SpiNN-3 Board](https://spinnaker
 *Fig.3) SpiNN-5 board, the standard building block of a large-scale SpiNNaker neuromorphic system. Featuring 48 SpiNNaker chips interconnected in a mesh topology where each chip connects to six neighbors, it provides a total of 864 ARM cores across the board. Source: [Ebrains Collaboratory](https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/SpiNNaker/#Information)*
 
 ### Board structure:
-...
-
-There is an [Official Quick Start Guide for the SpiNN-5 Platform](https://spinnakermanchester.github.io/docs/spinn-app-9.pdf) that quickly introduces the board and contain useful Power-Up and Troubleshooting guide.
+The diagram of the layout and description of the SpiNN-5 board can be found in the [Official Quick Start Guide for the SpiNN-5 Platform](https://spinnakermanchester.github.io/docs/spinn-app-9.pdf). 
+The SpiNN-5 board is equipped with two Ethernet ports, each serve different purposes. The **Spin** port is used for standard operation of the system, including booting, configuration, and running neural network simulations. In contrast, the **BMP** (Board Management Processor) port is intended for low-level hardware management tasks such as monitoring board status, power control, and recovery operations, and is not used for regular simulation workflows.
 
 ## Installation
 The setup procedure is based on the guidelines provided in the [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard).
@@ -150,10 +149,10 @@ A successful response confirms that the system is correctly configured and ready
 
 #### SpiNN-3
 - Verify that each chip indicates normal operation by showing at least one blinking green LED. If any red LEDs are observed, this may indicate a fault or link error; in such cases, perform a hardware reset by pressing and holding the reset button for a few seconds, and allow the board to reboot fully before proceeding.
-
+- In the event that the SpiNNaker board experiences unusually high operating temperatures, the system should be safely shut down by disconnecting both the power and Ethernet connections. The board should then be left idle for a sufficient period to allow it to return to normal operating temperature before resuming operation.
 #### SpiNN-5
-- Ensure that no additional interconnect cables are attached to the board unless explicitly required. Unintended connections between communication links may introduce loops in the SpiNNaker network topology, leading to packet circulation, routing instability, or communication failures during operation.
-
+- Ensure that no additional interconnect cables are attached to the board unless explicitly required. Unintended connections between communication links may introduce loops in the SpiNNaker network topology, leading to packet circulation, routing instability, or communication failures during operation;
+- When connecting the SpiNN-5 board, verify that the Ethernet cable is connected to the Spin Ethernet interface, and not the BMP port, as incorrect connection may result in boot or connectivity failures.
 
 ***
 Versions of the common packages for **Python 3.12** that was used with SpiNNaker boards in group's research can be found below.
