@@ -1,46 +1,61 @@
 
 This tutorial is based on the [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) from University of Manchester
-# About the SpiNN-3 SpiNNaker Board
-![](images/spinnaker.png)
+# About the SpiNNaker Boards
+SpiNNaker (or SpiNN) is a large-scale neuromorphic computing platform developed at the University of Manchester for real-time simulation of spiking neural networks (SNNs). The architecture is designed to emulate biological neural systems using parallel, low-power processing cores.
 
-- **S0: root chip** which is directly connected to the Ethernet controller. It is the entry point for communication between your host computer and the SpiNNaker machine. Runs SCAMP (SpiNNaker Control and Monitor Program, manages loading binaries, gathering data etc.)
+Each SpiNNaker system is built from many identical **SpiNNaker chips**, each integrating multiple ARM cores and a dedicated communication infrastructure. These chips are assembled into boards, with SpiNN-3 and SpiNN-5 representing two key hardware configurations differing primarily in scale and intended use cases. A single SpiNNaker chip can perform up to 3.6 billion simple operations per second *consuming only 1 Watt of electrical power* [[1]](https://pure.manchester.ac.uk/ws/files/51830495/High_Performance_Computing_on_SpiNNaker_Neuromorphic_Platform_a_Case_Study_for_Energy_Efficient_Image_Processin.pdf?utm_source=chatgpt.com), enabling the deployment of complex neural simulations in power-constrained environments such as embedded and robotic systems.
+
+At a larger scale, multiple SpiNN boards can be interconnected to form a **SpiNNaker machine**, supporting simulations of significantly greater complexity. The most prominent example is the world’s largest neuromorphic computing SpiNNaker system developed at the University of Manchester (Fig.1), which consists of 1,036,800 cores interconnected through a high-speed communication network, reaching over 7 TB of RAM. This system is constructed by assembling numerous SpiNN-5 boards into racks, creating a highly scalable computing platform. In terms of simulation capacity, it was designed to model up to approximately one billion (10⁹) neurons and one trillion (10¹²) synapses in real time [[2]](https://doi.org/10.3389/fnins.2018.00816), placing it above the neuronal scale of small mammalian brains such as that of the mouse (≈10⁸ neurons), while still representing only about 1% of the human brain (≈8.6 × 10¹⁰ neurons).
+
+
+SpiNNaker machine of University of Manchester can be accessed through the [EBRAINS Collaboratory](https://wiki.ebrains.eu/bin/view/Collabs/neuromorphic/SpiNNaker/), where computational resources are exposed via Jupyter Notebook environments accessible directly in a web browser through the “Lab” interface.
+
+![](images/spinnaker-machine-manchester.jpeg)
+
+# Local SpiNN Boards
+
+Within the Neuro-Inspired Perception and Cognition research group, two SpiNNaker platforms are available for use: the SpiNN-3 and SpiNN-5 boards, representing different scales of neuromorphic architecture and enabling a range of neuromorphic computing experiments. The **SpiNN-3 board** is a compact, low-power platform composed of four interconnected SpiNNaker chips, making it suitable for small-scale neural simulations. In contrast, the **SpiNN-5** board provides a significantly larger computational resource, consisting of 48 chips and incorporating FPGA-based communication interfaces, which allow for higher scalability and integration of deeper neural networks.
+
+## SpiNN-3
+
+![](images/spinn-3-npc.png)
+
+### Board structure:
+- **S0: root chip** which is directly connected to the Ethernet controller. It is the entry point for communication between the host computer and the SpiNN board, runs SCAMP (SpiNNaker Control and Monitor Program), manages loading binaries, gathering data etc.
 - **S1-S3: secondary chips**. These computational chips do not have direct Ethernet access and cannot boot on their own. They are connected to S0 and to each other; once S0 boots successfully, it will boot S1–S3 via the SpiNNaker mesh network.
-- **chip LEDs**: each chip has four small LEDs (labeled 7, 6, 1, 0) located near the chip itself.
-  Either:
-  - These LEDs indicate activity on specific processor cores within that chip. Core 0 is the main core in the chip, so when the chip is active the ACT 0 LED will blink. Other LEDs which are indicating core indexes 1, 6, and 7 might blink when correspondive cores are active during a simulation. You can find these LEDs arranged around each chip, often just beside the SpiNNaker chip package. Their activity helps visually monitor whether the chip is active and which cores are being used at runtime. (DONE try to load cores 1 6 and 7 to confirm, failed. The second variant is more realistic)
-  - These LEDs are link status indicators. The LEDs indicate the status of the inter-chip communication links 0, 1, 6 and 7 because they are likely the ones that are most critical for the board's operation.
-
+- **Chip LEDs**: each chip has four small LEDs (labeled 7, 6, 1, 0) located near the chip itself.
      - Green LED: Link is active and functioning properly 
      - Red LED: Link error or fault condition 
-     - Off: Link is inactive or not connected 
      - Blinking: Data transmission activity on that link 
 
-- **1** partial reset?
-- **2: PRG button** used to put the board into programming mode. When pressed, it enables the board to enter a state that allows new firmware or software to be uploaded.
-- **3** full reset?
-- **4: Ethernet Status LEDs**. Indicates whether the cable is connected and the board detects the network.
-- **5: PWR LED.** Indicates whether the board is receiving power.
-- **eth: Ethernet connector**
-- **power: Power input connector**
+- **PRG button** (left upper corner) used to put the board into programming mode. When pressed, it enables the board to enter a state that allows new firmware or software to be uploaded.
+- **PWR LED** (right upper corner) indicates whether the board is receiving power.
+- **Ethernet Status LEDs** (under sticker with number 4) indicate whether the cable is connected and the board detects the network. Important: directly under the Ethernet connector there are additional network activity LEDs. A blinking green LED indicates active data transmission between the host computer and the board.
+- **Ethernet connector**, the main communication channel between board and a host computer, used for control, booting, and data transfer.
+- **Power input connector**, supplies electrical power to the board.
+- **RST** button near Ethernet connector performs a hardware reset of the board, useful for restarting the system without power cycling.
 
-# SpiNN 5 Quick Start Guide
-Additionally, there is an [Official Quick Start Guide](https://spinnakermanchester.github.io/docs/spinn-app-9.pdf) for the SpiNN 5 that quickly introduces the board and the setup process.
+Before starting work, ensure that both the power supply and Ethernet cables are properly connected.
+To restart the board, press and hold the reset button for a few seconds, then wait until all chips have fully booted (indicated by green LEDs on the chips).
 
-# Installation
-Note: As [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) states, 
-> Full testing is done using Ubuntu 22.04 and Python 3.12 so these are our recommendations.
+There is an [Official brief introduction to the SpiNN-3 Board](https://spinnakermanchester.github.io/docs/spinn-app-1.pdf?) available, however the board layout can differ.
+## SpiNN-5
 
-Let's start with setting up the virtual environment.
+![](images/SpiNN5_SpiNNaker48ChipsBoard.jpg)
+### Board structure:
+...
+
+There is an [Official Quick Start Guide for the SpiNN-5 Platform](https://spinnakermanchester.github.io/docs/spinn-app-9.pdf) that quickly introduces the board and contain useful Power-Up and Troubleshooting guide.
+
+# Setup
+If you are using the board for the first time, please follow [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard).
+ 
+
+Start with setting up the virtual environment. **Python 3.12** is recommended
 ```bash
 cd your/project
-```
-```bash
 python -m venv .venv
-```
-```bash
 .venv\Scripts\activate # Windows command prompt
-```
-```bash
 source .venv/bin/activate # Linux/macOS
 ```
 You should now see the environment name in your terminal prompt, like:
@@ -55,91 +70,95 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install require
 # if you had them installed before
 pip uninstall pyNN-SpiNNaker
 pip uninstall sPyNNaker
-
-pip install matplotlib
 ```
-Install sPyNNaker:
-
 ```bash
 pip install sPyNNaker
-```
-
-Install pyNN-SpiNNaker:
-```bash
 python -m spynnaker.pyNN.setup_pynn
 ```
 
 
-## Configuration 
+## Configuration file setup
 
-Please follow the configuration part of the [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard) from Manchester University. When you are done, check the connection by using ICMP echo request:
-```bash
-ping [your board's IP]
+This follows the configuration part of the [PyNN on SpiNNaker installation guide](https://spinnakermanchester.github.io/spynnaker/8.0.0/PyNNOnSpinnakerInstall.html#LocalBoard).
+
+When sPyNNaker is executed for the first time, it automatically checks for an existing configuration file. To manually trigger the creation of this configuration file before running a simulation, the following Python script can be executed:
+
+```python
+import pyNN.spiNNaker as sim
+sim.setup()
+sim.end()
 ```
-### Troubleshooting 
+This will generate a file named `.spynnaker.cfg` in the home directory; note that on some operating systems, files starting with a dot are hidden by default.
 
-Make sure you actually know your board's IP address! The default IP address for a spinn-3 board is **192.168.240.253** and for a spinn-5 board is **192.168.240.1**, however, this is not guaranteed, as the board may have been reconfigured. **!!The board in our lab is on the 130.88.198.98**!!. If the default address configuration throws errors and
-board is not reachable by ping, after connecting the board to your computer via Ethernet, check your ARP table to see if the board's MAC and IP address appear to confirm whether the board is using the IP address you expect. 
-```bash
-arp -a
+After opening `.spynnaker.cfg`, locate the following section:
+
+```python
+[Machine]
+machineName = None
+version = None
 ```
-If the board's IP address is not the default one, configure your computer's Ethernet interface with a static IP in the same subnet. In this case it means matching the first three numbers and choosing an unused final digit - in this case **130.88.198.99**.
+And update this configuration by setting the appropriate machine address and type:
 
-After power on or reset a SpiNNaker board, you might observe the board trying to communicate via its SCAMP boot protocol. If you capture the Ethernet traffic (for example using WireShark), you will likely see UDP packets broadcasted from board's IP. That is how the SpiNNaker is trying to communicate with a computer.
-Below you can see an example of Ethernet traffic captured with WireShark. We can understand what the boards IP address is by analyzing the highlited UDP packets.
-![](images/wireshark.jpg)
+#### SpiNN-3
+```python
+[Machine]
+machineName = 130.88.198.98
+version = 3
+```
+#### SpiNN-5
+```python
+[Machine]
+machineName = 192.168.240.1
+version = 5
+```
+## Network Configuration
+In order to establish communication with the SpiNNaker board, it is necessary to define a local network range in which devices can directly communicate and configure the host computer’s network interface appropriately. 
+**The Ethernet interface of the host computer must then be assigned a static IP address within the same subnet as the SpiNNaker board:**
+#### SpiNN-3
+```python
+ip addr - 130.88.198.99
+subnet mask - 255.255.255.0
+```
+#### SpiNN-5
+```python
+ip addr - 192.168.240.2
+subnet mask - 255.255.255.0
+```
+
+Check the connection by using ICMP echo request:
+```
+ping [board's IP]
+```
+A successful response confirms that the system is correctly configured and ready for use, allowing simulations and further interaction with the SpiNNaker platform to proceed.
+
+## Troubleshooting 
+
+- Ensure that the plastic retaining clips on the Ethernet connectors are intact on both ends, as a damaged clip may result in an unstable connection even if the cable appears to be properly inserted;
+
+#### SpiNN-3
+- Verify that each chip indicates normal operation by showing at least one blinking green LED. If any red LEDs are observed, this may indicate a fault or link error; in such cases, perform a hardware reset by pressing and holding the reset button for a few seconds, and allow the board to reboot fully before proceeding;
+
+#### SpiNN-5
+- Ensure that no additional interconnect cables are attached to the board unless explicitly required. Unintended connections between communication links may introduce loops in the SpiNNaker network topology, leading to packet circulation, routing instability, or communication failures during operation;
 
 
+## Further troubleshooting
+Versions of the common packages that works for lab's SpiNNaker boards with **Python 3.12** can be found below.
 
-## Overview of the installed packages
-Frozen environment of the installed packages with their versions that worked for me.
-**- Python 3.12 -**
 ```bash
-appdirs==1.4.4 
-attrs==25.3.0
-certifi==2025.7.14
-charset-normalizer==3.4.2
-colorama==0.4.6
-contourpy==1.3.3
-csa==0.1.12
-cycler==0.12.1
-Deprecated==1.2.18
-ebrains-drive==0.6.0
-fonttools==4.59.0
-h5py==3.14.0
-idna==3.10
-jsonschema==4.25.0
-jsonschema-specifications==2025.4.1
-kiwisolver==1.4.8
-lazyarray==0.6.0
 matplotlib==3.10.3
-morphio==3.4.0
-neo==0.14.2
 numpy==2.3.2
-packaging==25.0
-pillow==11.3.0
 PyNN==0.12.4
-pyparsing==3.2.3
-python-dateutil==2.9.0.post0
-PyYAML==6.0.2
-quantities==0.16.2
-referencing==0.36.2
-requests==2.32.4
-rpds-py==0.26.0
 scipy==1.16.1
-setuptools==80.9.0
-six==1.17.0
-spalloc==1!7.3.0
 SpiNNaker_PACMAN==1!7.3.0
 SpiNNFrontEndCommon==1!7.3.0
 SpiNNMachine==1!7.3.0
 SpiNNMan==1!7.3.0
 SpiNNUtilities==1!7.3.0
 sPyNNaker==1!7.3.0
-tqdm==4.67.1
-typing_extensions==4.14.1
-urllib3==2.5.0
-websocket-client==1.8.0
-wheel==0.45.1
-wrapt==1.17.2
 ```
+## References
+
+[1] SUGIARTO, I.; LIU, G.; DAVIDSON, S.; PLANA, L. A.; FURBER, S. B. High performance computing on SpiNNaker neuromorphic platform: A case study for energy efficient image processing. In: *2016 IEEE 35th International Performance Computing and Communications Conference (IPCCC)*. 2016, pp. 1–8. Available from doi: [10.1109/PCCC.2016.7820645](https://doi.org/10.1109/PCCC.2016.7820645).  
+
+[2] RHODES, O.; BOGDAN, P. A.; BRENNINKMEIJER, C.; DAVIDSON, S.; FELLOWS, D.; GAIT, A.; LESTER, D. R.; MIKAITIS, M.; PLANA, L. A.; ROWLEY, A. G. D.; STOKES, A. B.; FURBER, S. B. sPyNNaker: A Software Package for Running PyNN Simulations on SpiNNaker. *Frontiers in Neuroscience*. 2018, vol. 12, p. 816. Available from doi: [10.3389/fnins.2018.00816](https://doi.org/10.3389/fnins.2018.00816).
